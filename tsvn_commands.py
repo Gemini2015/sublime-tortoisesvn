@@ -69,6 +69,12 @@ class TortoisesvnCommandBase(sublime_plugin.WindowCommand):
         else:
             run_tortoise_svn_command(command, args, path)
 
+class TsvnUpdateCommand(TortoisesvnCommandBase):
+    def run(self, edit=None, dirs=[]):
+        self._execute_command('update', self._selected_dir(dirs))
+
+    def _relevant_path(self):
+        return self._active_file_or_repo_path()
 
 class TsvnLogCommand(TortoisesvnCommandBase):
     def run(self, edit=None, dirs=[]):
